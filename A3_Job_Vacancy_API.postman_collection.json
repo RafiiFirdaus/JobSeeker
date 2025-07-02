@@ -1,0 +1,129 @@
+{
+  "info": {
+    "name": "A3 - Job Vacancy API",
+    "description": "API endpoints for job vacancy functionality",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://127.0.0.1:8000/api/v1",
+      "type": "string"
+    },
+    {
+      "key": "token",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Society Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nik\": \"1234567890123456\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/login",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "login"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Job Vacancies",
+      "item": [
+        {
+          "name": "A3a - Get All Job Vacancies",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/job_vacancies?token={{token}}",
+              "host": ["{{base_url}}"],
+              "path": ["job_vacancies"],
+              "query": [
+                {
+                  "key": "token",
+                  "value": "{{token}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "A3c - Get Job Vacancy Detail by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/job_vacancies/1?token={{token}}",
+              "host": ["{{base_url}}"],
+              "path": ["job_vacancies", "1"],
+              "query": [
+                {
+                  "key": "token",
+                  "value": "{{token}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Job Vacancies by Category",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/job_vacancies/category/1?token={{token}}",
+              "host": ["{{base_url}}"],
+              "path": ["job_vacancies", "category", "1"],
+              "query": [
+                {
+                  "key": "token",
+                  "value": "{{token}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "A3b/A3d - Invalid Token Test",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/job_vacancies?token=invalid_token",
+              "host": ["{{base_url}}"],
+              "path": ["job_vacancies"],
+              "query": [
+                {
+                  "key": "token",
+                  "value": "invalid_token"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
